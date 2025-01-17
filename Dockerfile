@@ -8,11 +8,13 @@ LABEL maintainer="James Gebbie-Rayet <james.gebbie@stfc.ac.uk>"
 USER $NB_USER
 WORKDIR $HOME
 
+# Install nb env deps
+RUN pip install jupyterhub-tmpauthenticator
+
+# Install workshop deps
 RUN conda install mdtraj matplotlib numpy nglview -y
 RUN conda install ipywidgets -c conda-forge -y 
 
-# Python Dependencies for the md_workshop
-RUN pip3 install jupyterhub-tmpauthenticator
 
 # Get workshop files and move them to jovyan directory.
 RUN git clone https://github.com/CCPBioSim/basic-analysis-workshop.git && \
