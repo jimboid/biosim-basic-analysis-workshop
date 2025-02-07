@@ -1,6 +1,8 @@
 CCPBioSim Basic Analysis Workshop
 =================================
 
+[![basic analysis workshop](https://github.com/jimboid/biosim-basic-analysis-workshop/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/jimboid/biosim-basic-analysis-workshop/actions/workflows/build.yml)
+
 This container is derived from the CCPBioSim JupyterHub image. This container
 adds the necessary software packages and notebook content to form a deployable
 course container. The source content for this course can be found at
