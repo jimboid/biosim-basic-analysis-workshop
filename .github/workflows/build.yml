@@ -1,4 +1,4 @@
-name: basic analysis workshop
+name: build
 
 on:
   repository_dispatch:
