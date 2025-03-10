@@ -22,4 +22,4 @@ jobs:
 
     - name: Test notebooks
       shell: bash
-      run: pytest --nbmake "./ipynb"
+      run: pytest --nbmake *./ipynb
