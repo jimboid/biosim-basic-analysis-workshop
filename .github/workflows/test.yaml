@@ -1,0 +1,25 @@
+on:
+  repository_dispatch:
+    types: [test]
+  workflow_dispatch:
+
+env:
+  REGISTRY: "ghcr.io"
+  IMAGE: ${{ github.repository }}
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    container:
+        image: ${{ env.REGISTRY }}/${{ env.IMAGE }}:dev
+    name: Testing ${{ env.IMAGE }}
+    steps:
+
+    - name: Install testing packages
+      shell: bash
+      run: pip install pytest nbmake
+
+    - name: Test notebooks
+      shell: bash
+      run: pytest --nbmake *./ipynb
