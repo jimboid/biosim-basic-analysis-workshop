@@ -3,27 +3,23 @@ on:
     types: [test]
   workflow_dispatch:
 
+env:
+  REGISTRY: "ghcr.io"
+  IMAGE: ${{ github.repository }}
+
 jobs:
   tests:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     container:
-        image: ghcr.io/psdi-pathfinder4/aiida-testbase:dev
-    name: ${{ matrix.container }}
+        image: ${{ env.REGISTRY }}/${{ env.IMAGE }}:dev
+    name: Testing ${{ env.IMAGE }}
     steps:
-    - uses: actions/checkout@v4
 
-    - name: Start AiiDA with a test profile
+    - name: Install testing packages
       shell: bash
-      run: /home/aiida/aiida-start
+      run: pip install pytest nbmake
 
-    - name: Install aiida-gromacs and its testing dependencies
+    - name: Test notebooks
       shell: bash
-      run: pip install -e .[testing]
-
-    - name: Run test suite
-      shell: bash
-      run: pytest --cov aiida_gromacs --cov-report term-missing --cov-append .
-
-    - name: Report Coverage
-      uses: coverallsapp/github-action@v2
+      run: pytest --nbmake "./ipynb"
