@@ -1,0 +1,34 @@
+on:
+  repository_dispatch:
+    types: [test]
+  workflow_dispatch:
+
+env:
+  REGISTRY: "ghcr.io"
+  IMAGE: ${{ github.repository }}
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    container:
+        image: ${{ env.REGISTRY }}/${{ env.IMAGE }}:dev-${{ github.event.client_payload.tag }}
+    name: Testing ${{ env.IMAGE }}
+    steps:
+
+    - name: Install testing packages
+      shell: bash
+      run: pip install pytest nbmake
+
+    - name: Test notebooks
+      shell: bash
+      run: pytest --nbmake *./ipynb
+
+    - uses: shrink/actions-docker-registry-tag@v4
+      with:
+        registry: ${{ env.REGISTRY }}
+        repository: ${{ env.IMAGE }}
+        target: dev-${{ github.event.client_payload.tag }}
+        tags: |
+          ${{ github.event.client_payload.tag }}
+          latest
