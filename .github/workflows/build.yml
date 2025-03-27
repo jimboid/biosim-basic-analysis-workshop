@@ -57,7 +57,7 @@ jobs:
         id: ghcr-auth
         uses: docker/login-action@v3.3.0
         with:
-          registry: ghcr.io
+          registry: ${{ env.REGISTRY }}
           username: ${{github.actor}}
           password: ${{secrets.BUILD_TOKEN}}
 
@@ -74,6 +74,6 @@ jobs:
         uses: peter-evans/repository-dispatch@v3.0.0
         with:
           token: ${{ secrets.BUILD_TOKEN }}
-          repository: ${{ github.repository }}
+          repository: ${{ env.IMAGE }}
           event-type: test    
           client-payload: '{"tag": "${{ steps.version-tag.outputs.tag }}"}'
