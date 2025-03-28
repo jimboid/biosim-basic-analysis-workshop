@@ -14,10 +14,6 @@ jobs:
     name: Testing ${{ github.repository }}
     steps:
 
-    - name: sort out $HOME mess
-      shell: bash
-      run: 'echo HOME=/home/jovyan | sudo tee -a $GITHUB_ENV'
-
     - name: Install testing packages
       shell: bash
       run: pip install pytest nbmake
