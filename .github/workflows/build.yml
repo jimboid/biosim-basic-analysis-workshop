@@ -37,7 +37,7 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE }}
           tags: |
-            dev-${{ steps.version-tag.outputs.tag }}
+            dev
           labels: |
             annotation-index.org.opencontainers.image.source=https://github.com/${{ github.repository }}
             annotation-index.org.opencontainers.image.licenses=MIT
