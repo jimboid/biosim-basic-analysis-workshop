@@ -21,7 +21,7 @@ jobs:
       with:
         registry: ghcr.io
         repository: ${{ github.repository }}
-        target: dev-${{ github.event.client_payload.tag }}
+        target: dev
         tags: |
           ${{ github.event.client_payload.tag }}
           latest
