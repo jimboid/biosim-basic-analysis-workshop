@@ -70,6 +70,6 @@ jobs:
         uses: peter-evans/repository-dispatch@v3.0.0
         with:
           token: ${{ secrets.BUILD_TOKEN }}
-          repository: ${{ env.IMAGE }}
+          repository: ${{ github.repository }}
           event-type: test    
           client-payload: '{"tag": "${{ steps.version-tag.outputs.tag }}"}'
