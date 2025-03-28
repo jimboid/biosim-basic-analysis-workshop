@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     container:
-        image: ghcr.io/${{ github.repository }}:dev-${{ github.event.client_payload.tag }}
+        image: ghcr.io/${{ github.repository }}:dev
     name: Testing ${{ github.repository }}
     steps:
 
