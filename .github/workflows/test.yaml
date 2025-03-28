@@ -15,7 +15,7 @@ jobs:
     - name: Test notebooks
       shell: bash
       run: |
-        docker run -it ghcr.io/${{ github.repository }}:dev bash
+        docker run -t ghcr.io/${{ github.repository }}:dev bash
         pip install pytest nbmake
         pytest --nbmake *.ipynb
 
