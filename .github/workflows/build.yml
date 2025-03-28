@@ -25,11 +25,11 @@ jobs:
           fi
 
       - name: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
 
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v5.7.0
         with:
           images: ghcr.io/${{ github.repository }}
           tags: |
@@ -53,7 +53,7 @@ jobs:
         id: ghcr-auth
         uses: docker/login-action@v3.4.0
         with:
-          registry: "ghcr.io"
+          registry: ghcr.io
           username: ${{github.actor}}
           password: ${{secrets.BUILD_TOKEN}}
 
