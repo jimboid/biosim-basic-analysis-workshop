@@ -10,10 +10,6 @@ on:
         required: true
         default: 'null'
 
-env:
-  REGISTRY: "ghcr.io"
-  IMAGE: ${{ github.repository }}
-
 jobs:
   base-build:
     runs-on: ubuntu-24.04
@@ -35,7 +31,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE }}
+          images: ghcr.io/${{ github.repository }}
           tags: |
             dev
           labels: |
@@ -57,7 +53,7 @@ jobs:
         id: ghcr-auth
         uses: docker/login-action@v3.4.0
         with:
-          registry: ${{ env.REGISTRY }}
+          registry: "ghcr.io"
           username: ${{github.actor}}
           password: ${{secrets.BUILD_TOKEN}}
 
