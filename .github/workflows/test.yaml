@@ -17,7 +17,15 @@ jobs:
       run: |
         docker run -t ghcr.io/${{ github.repository }}:dev bash -c "pip install pytest nbmake; pytest --nbmake *.ipynb;"
 
-    - name: Test notebooks
+    - name: Authenticate with GHCR
+      id: ghcr-auth
+      uses: docker/login-action@v3.4.0
+      with:
+        registry: "ghcr.io"
+        username: ${{github.actor}}
+        password: ${{secrets.BUILD_TOKEN}}
+
+    - name: Push new tags
       shell: bash
       run: |
         docker buildx imagetools create \
