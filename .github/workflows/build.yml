@@ -72,7 +72,7 @@ jobs:
           retention-days: 1
 
   merge:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs:
       - build
     steps:
@@ -128,7 +128,7 @@ jobs:
           docker buildx imagetools inspect ghcr.io/${{ github.repository }}:dev
 
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     name: orchestrate tests
     needs: 
       - merge
