@@ -13,7 +13,7 @@ jobs:
           - linux/amd64
           - linux/arm64
     runs-on: ${{ matrix.platform == 'linux/amd64' && 'ubuntu-latest' || matrix.platform == 'linux/arm64' && 'ubuntu-24.04-arm' }}
-    name: testsing on ${{ matrix.platform }} 
+    name: testing on ${{ matrix.platform }} 
     timeout-minutes: 30
     steps:
       - name: Test notebook/s
