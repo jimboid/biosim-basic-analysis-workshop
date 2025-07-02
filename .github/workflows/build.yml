@@ -24,6 +24,12 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4.2.2
 
+      - name: Prepare env
+        id: envvars
+        run: |
+          platform=${{ matrix.platform }}
+          echo "PLATFORM_PAIR=${platform//\//-}" >> $GITHUB_ENV
+
       - name: Metadata
         id: meta
         uses: docker/metadata-action@v5.7.0
